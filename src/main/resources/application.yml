@@ -1,0 +1,25 @@
+spring:
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+
+logging:
+  pattern:
+    console: "%date %clr(%level) [%clr(%thread){yellow}] [%mdc] %clr(%logger{30}){cyan} : %message%n"
+  level:
+    root: INFO
+    ru.tinkoff.bpm.verificationcheckservice: DEBUG
+#    org.hibernate.SQL: DEBUG
+#    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+
+datasource:
+  host: localhost
+  port: 35432
+  database-name: pg
+  jdbc-url: jdbc:postgresql://${datasource.host}:${datasource.port}/${datasource.database-name}
+  username: pg
+  password: pg
+
+server:
+  port: 8080

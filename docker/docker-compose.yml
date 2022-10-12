@@ -1,0 +1,11 @@
+services:
+  postgres:
+    container_name: pg-hia
+    ports:
+      - "35432:5432"
+    image: postgres
+    environment:
+      POSTGRES_DB: "pg"
+      POSTGRES_USER: "pg"
+      POSTGRES_PASSWORD: "pg"
+    restart: on-failure:3
