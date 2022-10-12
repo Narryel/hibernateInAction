@@ -8,4 +8,5 @@ class HibernateInActionApplication
 
 fun main(args: Array<String>) {
     runApplication<HibernateInActionApplication>(*args)
+
 }
