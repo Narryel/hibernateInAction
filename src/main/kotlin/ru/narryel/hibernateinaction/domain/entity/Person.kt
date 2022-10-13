@@ -1,4 +1,4 @@
-package ru.narryel.hibernateinaction.entity
+package ru.narryel.hibernateinaction.domain.entity
 
 import javax.persistence.Entity
 import javax.persistence.EnumType
@@ -14,10 +14,10 @@ data class Person(
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var id: Long,
-
+    var id: Long? = null,
     var name: String,
-
+    var surname: String,
+    var age: Int,
     @Enumerated(EnumType.STRING)
     var sex: Sex,
 )
