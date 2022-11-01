@@ -15,7 +15,7 @@ class PersonController(
     private val personService: PersonService,
 ) {
     @GetMapping("/{id}")
-    fun getPerson(@PathParam("id") personId: Long) = personService.getPerson(personId)
+    fun getPerson(@PathParam("id") personId: Long): PersonDto = personService.getPerson(personId)
 
     @PostMapping
     fun createPerson(@RequestBody personDto: PersonDto) = personService.createPerson(personDto)

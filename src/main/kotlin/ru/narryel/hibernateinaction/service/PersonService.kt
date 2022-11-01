@@ -1,46 +1,19 @@
 package ru.narryel.hibernateinaction.service
 
-import org.hibernate.SessionFactory
 import org.springframework.stereotype.Service
-import ru.narryel.hibernateinaction.domain.dto.DocumentDto
+import ru.narryel.hibernateinaction.domain.dao.PersonDao
 import ru.narryel.hibernateinaction.domain.dto.PersonDto
-import ru.narryel.hibernateinaction.domain.entity.Document
-import ru.narryel.hibernateinaction.domain.entity.Person
+import ru.narryel.hibernateinaction.mapper.PersonMapper
 
 @Service
 class PersonService(
-    private val sessionFactory: SessionFactory,
+    private val mapper: PersonMapper,
+    private val personDao: PersonDao,
 ) {
 
     fun createPerson(personDto: PersonDto) {
-        val currentSession = sessionFactory.openSession()
-        currentSession.beginTransaction()
-        currentSession.persist(personDto.toEntity())
-        currentSession.transaction.commit()
-        currentSession.close()
+        personDao.savePerson(mapper.toEntity(personDto))
     }
 
-    fun getPerson(personId: Long): Person {
-        val session = sessionFactory.openSession()
-
-        return session.get(Person::class.java, personId).also {
-            session.close()
-        }
-    }
+    fun getPerson(personId: Long): PersonDto = mapper.toDto(personDao.getPerson(personId))
 }
-
-private fun PersonDto.toEntity() = Person(
-    name = name,
-    surname = surname,
-    age = age,
-    sex = sex,
-    documents = documents.map { it.toDto() }.toMutableList()
-)
-
-private fun DocumentDto.toDto() = Document(
-    id = id,
-    type = type,
-    number = number,
-    //TODO
-    person = null
-)

@@ -5,7 +5,10 @@ create table persons
     age     integer not null,
     name    varchar(255),
     sex     varchar(255),
-    surname varchar(255)
+    surname varchar(255),
+    phone varchar(255),
+    work_phone varchar(255),
+    local_code varchar(255)
 );
 
 alter table persons

@@ -2,6 +2,7 @@ spring:
   jpa:
     show-sql: true
     hibernate:
+#      not working, go to Hibernate DS confgiruration
       ddl-auto: none
 
 logging:

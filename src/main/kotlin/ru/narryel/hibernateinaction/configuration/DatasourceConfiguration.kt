@@ -34,6 +34,7 @@ class DatasourceConfiguration {
     fun hibernateProperties() = Properties().apply {
         put("hibernate.show_sql", true)
         put("hibernate.dialect", "org.hibernate.dialect.PostgreSQL9Dialect")
-        put("hibernate.hbm2ddl.auto", "create-drop")
+//        put("hibernate.hbm2ddl.auto", "create-drop")
+        put("hibernate.hbm2ddl.auto", "none")
     }
 }
