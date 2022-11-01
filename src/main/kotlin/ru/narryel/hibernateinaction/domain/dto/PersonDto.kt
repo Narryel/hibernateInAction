@@ -8,4 +8,5 @@ data class PersonDto(
     var surname: String,
     var age: Int,
     var sex: Sex,
+    var documents: List<DocumentDto>
 )

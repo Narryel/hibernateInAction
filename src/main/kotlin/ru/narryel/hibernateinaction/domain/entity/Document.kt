@@ -6,27 +6,27 @@ import javax.persistence.Enumerated
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
-import javax.persistence.OneToMany
+import javax.persistence.JoinColumn
+import javax.persistence.ManyToOne
 import javax.persistence.Table
 
 @Entity
-@Table(name = "persons")
-data class Person(
-
+@Table(name = "documents")
+data class Document(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var id: Long? = null,
-    var name: String,
-    var surname: String,
-    var age: Int,
-    @Enumerated(EnumType.STRING)
-    var sex: Sex,
+    val id: Long?,
 
-    @OneToMany(mappedBy="person")
-    val documents: MutableList<Document>
+    @Enumerated(EnumType.STRING)
+    val type: DocumentType,
+
+    val number: Int,
+
+    @ManyToOne
+    @JoinColumn(name = "person_id", nullable = false)
+    val person: Person?,
 )
 
-enum class Sex {
-    M, F
+enum class DocumentType {
+    PASSPORT, DRIVER_LICENCE
 }
-

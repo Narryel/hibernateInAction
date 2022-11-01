@@ -7,7 +7,6 @@ stop:
 
 restart: stop start
 
-
 swagger:
 	open http://localhost:8080/swagger-ui.html
 

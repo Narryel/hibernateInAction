@@ -2,7 +2,9 @@ package ru.narryel.hibernateinaction.service
 
 import org.hibernate.SessionFactory
 import org.springframework.stereotype.Service
+import ru.narryel.hibernateinaction.domain.dto.DocumentDto
 import ru.narryel.hibernateinaction.domain.dto.PersonDto
+import ru.narryel.hibernateinaction.domain.entity.Document
 import ru.narryel.hibernateinaction.domain.entity.Person
 
 @Service
@@ -31,5 +33,14 @@ private fun PersonDto.toEntity() = Person(
     name = name,
     surname = surname,
     age = age,
-    sex = sex
+    sex = sex,
+    documents = documents.map { it.toDto() }.toMutableList()
+)
+
+private fun DocumentDto.toDto() = Document(
+    id = id,
+    type = type,
+    number = number,
+    //TODO
+    person = null
 )

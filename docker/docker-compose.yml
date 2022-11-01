@@ -4,6 +4,8 @@ services:
     ports:
       - "35432:5432"
     image: postgres
+    volumes:
+      - ../src/main/resources/db/:/docker-entrypoint-initdb.d/
     environment:
       POSTGRES_DB: "pg"
       POSTGRES_USER: "pg"
