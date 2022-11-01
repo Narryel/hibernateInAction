@@ -7,8 +7,7 @@ import ru.narryel.hibernateinaction.domain.entity.Person
 @Component
 class PersonDao(
     private val sessionFactory: SessionFactory,
-
-    ) {
+) {
     fun savePerson(person: Person): Person {
         val currentSession = sessionFactory.openSession()
         currentSession.beginTransaction()
